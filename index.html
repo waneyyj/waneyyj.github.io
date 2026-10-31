@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
     /* =========================================================
-       COLOURS: change these to restyle the whole site.
+       COLOURS: change these to restyle the whole site
        ========================================================= */
     :root {
       --dark: #14060C;        /* title screen darkness */
@@ -184,6 +184,18 @@
     .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
     .chip { font-size: 13px; padding: 4px 11px; border-radius: 999px; background: rgba(233, 139, 176, 0.14); }
 
+
+    /* Category filter buttons */
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+    .filter {
+      background: none; border: 2px solid var(--berry); color: var(--blush); cursor: pointer;
+      font-size: 10px; padding: 10px 14px; border-radius: 8px;
+    }
+    .filter:hover { border-color: var(--rose); }
+    .filter.active { background: var(--rose); border-color: var(--rose); color: var(--maroon); }
+    .card.hidden { display: none; }
+    .more { font-size: 14px; }
+
     /* XP bars (skills) */
     .xp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px 40px; }
     .xp-top { display: flex; justify-content: space-between; margin-bottom: 6px; }
@@ -301,40 +313,72 @@
       <div class="wrap">
         <span class="label pixel">SELECT A LEVEL</span>
         <h2>Projects</h2>
-        <p class="subtitle">Click a level to watch its video.</p>
+        <p class="subtitle">Pick a category, then click a level to watch its video.</p>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="filter active pixel" data-filter="all">ALL</button>
+          <button class="filter pixel" data-filter="game">GAMES</button>
+          <button class="filter pixel" data-filter="app">APPS</button>
+          <button class="filter pixel" data-filter="web">WEB</button>
+          <button class="filter pixel" data-filter="design">DESIGN</button>
+        </div>
         <div class="levels">
-
-          <article class="card reveal">
+          <article class="card reveal" data-cat="app">
             <div class="thumb placeholder"><span class="level-no pixel">LV 01</span>EduVision</div>
             <div class="card-body">
               <span class="status pixel">IN PROGRESS</span>
               <h3>EduVision</h3>
               <span class="role">Technical Lead · Team of 7 · 2026</span>
-              <p>An educational Android app that identifies Singapore's insects from a photo using an AI recognition API.
-                 I lead the technical direction and built the species identification feature.</p>
+              <p>An educational Android app that identifies Singapore's insects from a photo using an AI recognition API. I lead the technical direction and built the species identification feature.</p>
               <div class="chips"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip">REST API</span><span class="chip">Android</span></div>
             </div>
           </article>
-
-          <article class="card reveal">
+          <article class="card reveal" data-cat="game">
             <a class="thumb" href="https://youtu.be/fRrlq-ik1Lw" target="_blank" rel="noopener">
               <span class="level-no pixel">LV 02</span>
-              <img src="https://img.youtube.com/vi/fRrlq-ik1Lw/hqdefault.jpg" alt="Hollows trailer" loading="lazy" />
-              <span class="play pixel">▶ PLAY TRAILER</span>
+              <img src="https://img.youtube.com/vi/fRrlq-ik1Lw/hqdefault.jpg" alt="Hollows video" loading="lazy" />
+              <span class="play pixel">▶ PLAY VIDEO</span>
             </a>
             <div class="card-body">
               <span class="status pixel done">CLEARED</span>
               <h3>Hollows</h3>
               <span class="role">Programmer &amp; Level Designer · Team of 6 · 2026</span>
-              <p>A top-down stealth horror game in a custom C++ engine. I designed all 3 levels and scripted the
-                 torchlight, collectibles and hiding mechanics. (Yes, this site's torchlight is a tribute!)</p>
+              <p>A top-down stealth horror game in a custom C++ engine. I designed all 3 levels and scripted the torchlight, collectibles and hiding mechanics. (Yes, this site's torchlight is a tribute!)</p>
               <div class="chips"><span class="chip">C++</span><span class="chip">Level Design</span><span class="chip">Gameplay</span></div>
             </div>
           </article>
-
-          <article class="card reveal">
+          <article class="card reveal" data-cat="game">
+            <div class="thumb placeholder"><span class="level-no pixel">LV 03</span>Sports Day AI</div>
+            <div class="card-body">
+              <span class="status pixel done">CLEARED</span>
+              <h3>Sports Day AI</h3>
+              <span class="role">Game AI course project · 2026</span>
+              <p>A school sports day simulation driven by behaviour trees I built in C++: track runners racing, a cheerleading squad holding a triangle formation, and flyers being tossed.</p>
+              <div class="chips"><span class="chip">C++</span><span class="chip">Behaviour Trees</span><span class="chip">Game AI</span></div>
+            </div>
+          </article>
+          <article class="card reveal" data-cat="app design">
+            <div class="thumb placeholder"><span class="level-no pixel">LV 04</span>Ticket Kiosk</div>
+            <div class="card-body">
+              <span class="status pixel">IN PROGRESS</span>
+              <h3>Transit Ticket Kiosk</h3>
+              <span class="role">UI Designer &amp; Integration Lead · Team of 8 · 2026</span>
+              <p>A public transit ticket kiosk prototype. I designed the Request Assistance screen and lead integration: project setup, source control, screen manager and final build.</p>
+              <div class="chips"><span class="chip">UI Design</span><span class="chip">Unreal Engine</span><span class="chip">Source Control</span></div>
+            </div>
+          </article>
+          <article class="card reveal" data-cat="design">
+            <div class="thumb placeholder"><span class="level-no pixel">LV 05</span>Winchester Mystery House</div>
+            <div class="card-body">
+              <span class="status pixel done">CLEARED</span>
+              <h3>Winchester Mystery House</h3>
+              <span class="role">Card Designer · Game design module · 2025</span>
+              <p>A horror card game where players explore a haunted mansion, managing torchlight power and sanity while using clue cards to find the one true exit. I designed a set of the game's cards.</p>
+              <div class="chips"><span class="chip">Game Design</span><span class="chip">Card Design</span></div>
+            </div>
+          </article>
+          <article class="card reveal" data-cat="game app">
             <a class="thumb" href="https://youtu.be/RzGdIvTVzXY" target="_blank" rel="noopener">
-              <span class="level-no pixel">LV 03</span>
+              <span class="level-no pixel">LV 06</span>
               <img src="https://img.youtube.com/vi/RzGdIvTVzXY/hqdefault.jpg" alt="AH-64D VR Pre-Flight Trainer video" loading="lazy" />
               <span class="play pixel">▶ PLAY VIDEO</span>
             </a>
@@ -342,15 +386,13 @@
               <span class="status pixel done">CLEARED</span>
               <h3>AH-64D VR Pre-Flight Trainer</h3>
               <span class="role">Final Year Project with the RSAF · Team of 5 · 2024</span>
-              <p>A VR simulator that lets RSAF personnel practise helicopter pre-flight checks without the real aircraft.
-                 I modelled cockpit panels in Blender for the Unity trainer.</p>
+              <p>A VR simulator that lets RSAF personnel practise helicopter pre-flight checks without the real aircraft. I modelled cockpit panels in Blender for the Unity trainer.</p>
               <div class="chips"><span class="chip">Unity</span><span class="chip">Blender</span><span class="chip">VR</span></div>
             </div>
           </article>
-
-          <article class="card reveal">
+          <article class="card reveal" data-cat="game">
             <a class="thumb" href="https://youtu.be/zQCF9sZGLvE" target="_blank" rel="noopener">
-              <span class="level-no pixel">LV 04</span>
+              <span class="level-no pixel">LV 07</span>
               <img src="https://img.youtube.com/vi/zQCF9sZGLvE/hqdefault.jpg" alt="Castle Savior video" loading="lazy" />
               <span class="play pixel">▶ PLAY VIDEO</span>
             </a>
@@ -358,30 +400,13 @@
               <span class="status pixel done">CLEARED</span>
               <h3>Castle Savior</h3>
               <span class="role">Developer · Team of 2 · 2023</span>
-              <p>A VR fire-rescue game where players put out fires and save people. I built most of the gameplay,
-                 VR interactions and 3D environment.</p>
+              <p>A VR fire-rescue game where players put out fires and save people. I built most of the gameplay, VR interactions and 3D environment.</p>
               <div class="chips"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip">VR</span></div>
             </div>
           </article>
-
-          <article class="card reveal">
-            <a class="thumb" href="https://youtu.be/v9LFD1G9PQM" target="_blank" rel="noopener">
-              <span class="level-no pixel">LV 05</span>
-              <img src="https://img.youtube.com/vi/v9LFD1G9PQM/hqdefault.jpg" alt="Gutree website demo" loading="lazy" />
-              <span class="play pixel">▶ PLAY DEMO</span>
-            </a>
-            <div class="card-body">
-              <span class="status pixel done">CLEARED</span>
-              <h3>Gutree</h3>
-              <span class="role">Full-stack Web Developer · 2022</span>
-              <p>A full-stack e-commerce website for women's fashion, with a product catalogue, shopping bag and database.</p>
-              <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Database</span></div>
-            </div>
-          </article>
-
-          <article class="card reveal">
+          <article class="card reveal" data-cat="game">
             <a class="thumb" href="https://youtu.be/f2F3GkW4Zdg" target="_blank" rel="noopener">
-              <span class="level-no pixel">LV 06</span>
+              <span class="level-no pixel">LV 08</span>
               <img src="https://img.youtube.com/vi/f2F3GkW4Zdg/hqdefault.jpg" alt="A Day in Hell video" loading="lazy" />
               <span class="play pixel">▶ PLAY VIDEO</span>
             </a>
@@ -393,10 +418,63 @@
               <div class="chips"><span class="chip">Unity</span><span class="chip">C#</span><span class="chip">VR</span></div>
             </div>
           </article>
-
+          <article class="card reveal" data-cat="game">
+            <a class="thumb" href="https://youtu.be/1AJ4SDFPZcQ" target="_blank" rel="noopener">
+              <span class="level-no pixel">LV 09</span>
+              <img src="https://img.youtube.com/vi/1AJ4SDFPZcQ/hqdefault.jpg" alt="Rockmoon Games video" loading="lazy" />
+              <span class="play pixel">▶ PLAY VIDEO</span>
+            </a>
+            <div class="card-body">
+              <span class="status pixel done">CLEARED</span>
+              <h3>Rockmoon Games</h3>
+              <span class="role">Developer · 2022</span>
+              <p>A set of AR mini-games made in Unity, including an AR basketball game and a maze.</p>
+              <div class="chips"><span class="chip">Unity</span><span class="chip">AR</span></div>
+            </div>
+          </article>
+          <article class="card reveal" data-cat="web">
+            <a class="thumb" href="https://youtu.be/v9LFD1G9PQM" target="_blank" rel="noopener">
+              <span class="level-no pixel">LV 10</span>
+              <img src="https://img.youtube.com/vi/v9LFD1G9PQM/hqdefault.jpg" alt="Gutree video" loading="lazy" />
+              <span class="play pixel">▶ PLAY VIDEO</span>
+            </a>
+            <div class="card-body">
+              <span class="status pixel done">CLEARED</span>
+              <h3>Gutree</h3>
+              <span class="role">Full-stack Web Developer · 2022</span>
+              <p>A full-stack e-commerce website for women's fashion, with a product catalogue, shopping bag and database.</p>
+              <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Database</span></div>
+            </div>
+          </article>
+          <article class="card reveal" data-cat="web">
+            <a class="thumb" href="https://youtu.be/vTlgmkT4zRA" target="_blank" rel="noopener">
+              <span class="level-no pixel">LV 11</span>
+              <img src="https://img.youtube.com/vi/vTlgmkT4zRA/hqdefault.jpg" alt="Website Security Testing video" loading="lazy" />
+              <span class="play pixel">▶ PLAY VIDEO</span>
+            </a>
+            <div class="card-body">
+              <span class="status pixel done">CLEARED</span>
+              <h3>Website Security Testing</h3>
+              <span class="role">School project · Singapore Polytechnic</span>
+              <p>Found and fixed vulnerabilities in a provided website, with a video walkthrough of each exploit and its fix.</p><p class="more"><a href="https://youtu.be/vTlgmkT4zRA" target="_blank" rel="noopener">▶ XSS</a> · <a href="https://youtu.be/zd9YHMgh77U" target="_blank" rel="noopener">▶ Data exposure</a> · <a href="https://youtu.be/R-5cmiqnqvs" target="_blank" rel="noopener">▶ Authentication</a> · <a href="https://youtu.be/P98tHBFsnkQ" target="_blank" rel="noopener">▶ Access control</a></p>
+              <div class="chips"><span class="chip">Web Security</span><span class="chip">XSS</span><span class="chip">Authentication</span></div>
+            </div>
+          </article>
+          <article class="card reveal" data-cat="web">
+            <a class="thumb" href="https://youtu.be/bVtHdUZFDVk" target="_blank" rel="noopener">
+              <span class="level-no pixel">LV 12</span>
+              <img src="https://img.youtube.com/vi/bVtHdUZFDVk/hqdefault.jpg" alt="First Websites video" loading="lazy" />
+              <span class="play pixel">▶ PLAY VIDEO</span>
+            </a>
+            <div class="card-body">
+              <span class="status pixel done">CLEARED</span>
+              <h3>First Websites</h3>
+              <span class="role">Front-end Developer · 2021</span>
+              <p>My first websites: hand-coded in HTML and CSS, then rebuilt with Bootstrap.</p><p class="more"><a href="https://youtu.be/v7TIsXC-450" target="_blank" rel="noopener">▶ HTML &amp; CSS site</a> · <a href="https://youtu.be/bVtHdUZFDVk" target="_blank" rel="noopener">▶ Bootstrap site</a></p>
+              <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Bootstrap</span></div>
+            </div>
+          </article>
         </div>
-        <p style="margin-top:28px">Bonus levels (my card game and web security work) are on my
-          <a href="https://wani-portfolio.my.canva.site/projects-showcase" target="_blank" rel="noopener">full portfolio</a>.</p>
       </div>
     </section>
 
@@ -527,6 +605,21 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+
+    // ----- Project category filter -----
+    document.querySelectorAll(".filter").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const f = btn.dataset.filter;
+        document.querySelectorAll(".levels .card").forEach(card => {
+          const show = f === "all" || card.dataset.cat.split(" ").includes(f);
+          card.classList.toggle("hidden", !show);
+          if (show) card.classList.add("show");
+        });
+      });
+    });
 
     // ----- Project cards tilt slightly towards the mouse -----
     document.querySelectorAll(".card").forEach(card => {
